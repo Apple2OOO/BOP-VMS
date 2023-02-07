@@ -5,16 +5,6 @@ function onEdit(e) {
   var col = e.range.getColumn(); // Get Entry Column
   if(sheet.getName() == "Sign-In"){
 
-  /*if(col != 1) {
-    var editPassword = Browser.inputBox('Enter Password to Edit this Cell');
-    if(editPassword == 'admin'){
-      return;
-    } else{
-      Browser.msgBox('Invalid Password');
-
-    }
-  }*/
-
   var eventType = sheet.getRange('L6').getValue() // Get Current Event
   var sc = e.source.getSheetByName('Scoreboard') // Store Scoreboard Sheet
 
@@ -39,20 +29,6 @@ function onEdit(e) {
   {
   Browser.msgBox('ID Not Found. Please Have Visitor Register Using QR Code. Delete this entry and ask visitor to sign in again after completing the form.')//Register Now?')//, Browser.Buttons.YES_NO); 
    sheet.getRange(A + row).setValue("H");
-  /* if(newUserRegistration == "yes")
-   {
-     var shtMembers = e.source.getSheetByName('Members List');
-  var newUserFirstName = Browser.inputBox('Enter Your First Name');
-  var newUserLastName = Browser.inputBox('Enter Your Last Name');
-  var newUserEmail = Browser.inputBox('Enter Your Purdue Email');
-  var newUserID = sheet.getRange('A' + row).getValue();
-
-  var lastRowMembers = shtMembers.getRange('B1:B').getValues().filter(String).length + 1;
-  shtMembers.getRange('A' + lastRowMembers).setValue(newUserID); 
-  shtMembers.getRange('B' + lastRowMembers).setValue(newUserLastName + ', ' + newUserFirstName);
-      // --- Add Visitor Formula
-      e.source.getSheetByName('Sign-In').getRange('C' + row + '').setFormula('=ifna(IF(ISBLANK($A' + row + ')=TRUE,TRIM(""),VLOOKUP($B' + row + ',\'Members List\'!A:B,2,0)),"Not Registered")');
-   }*/
   }
 
 
@@ -148,11 +124,11 @@ sheet.getRange('E' + row).setFormula('=if(AND(G'+row+'="In",COUNTIFS(C$2:C'+row+
 
 
 
-      // Break Visitor Formula
-          sheet.getRange(row,3).setValue(sheet.getRange(row,3).getValue());
+// Break Visitor Formula
+    sheet.getRange(row,3).setValue(sheet.getRange(row,3).getValue());
 
-      // Return ActiveCell to Next Blank Row
-        sheet.getRange(row+1,1).activate(); 
+// Return ActiveCell to Next Blank Row
+  sheet.getRange(row+1,1).activate(); 
   }
 }
 function setCell() {
