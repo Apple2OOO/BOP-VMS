@@ -184,25 +184,5 @@ function secretarySignOutFormulas(sheet,row)
  // Browser.msgBox(sheet.getName());
   //Add Formulas to Row
 Browser.msgBox('Please make sure to sign out on the \'Sign-In\' Sheet before starting your shift');
-/*
-// --- Add PUID Formula
-        sheet.getRange('B' + row + '').setFormula('=IF(OR(LEN($A' + row + ')=8,LEN($A' + row + ')=10),$A' + row + ',IF(ISBLANK($A' + row + ')=TRUE,TRIM(""),VALUE(MID($A' + row + ',19,8))))');
-// --- Add Visitor Formula
-        sheet.getRange('C' + row + '').setFormula('=ifna(IF(ISBLANK($A' + row + ')=TRUE,TRIM(""),VLOOKUP($B' + row + ',\'Members List\'!A:B,2,0)),"Not Registered")');
-// --- In/Out Status Column  
-               sheet.getRange('G' + row).setFormula('=if(countif($C$2:$C' + row + ',C' + row + ')-1=0,"In",if(I' + row + '="No Out","In",if(isblank(A' + row + '),"",if(isblank(H' + row + '),"",if(if(isblank(A' + row + '),"",H' + row + ')="Out","In","Out")))))');
 
-// --- Last In/Out Column
-        sheet.getRange('H' + row).setFormula('=if((I' + row + ')="No Out","",(LOOKUP(A' + row + ',sort(A$2:A' + (row-1) + '),SORT(G$2:G' + (row-1) + ',A$2:A' + (row-1) + ',TRUE))))\n');
-// --- Last Timestamp Column
-        sheet.getRange('I' + row + '').setFormula('=if(isblank(A' + row + '),"",if(day((LOOKUP(A' + row + ',sort(A$2:A' + (row-1) + '),SORT(F$2:F' + (row-1) + ',A$2:A' + (row-1) + ',TRUE))))<>day(F' + row + '),"No Out",""))\n');
-// --- Duration Column
-        sheet.getRange('J' + row + '').setFormula('=if(G' + row + '<>"Out","", if(isblank(A' + row + '),"",abs(((LOOKUP(A' + row + ',sort(A$2:A' + (row-1) + '),SORT(F$2:F' + (row-1) + ',A$2:A' + (row-1) + ',TRUE)))-$F' + row + '))))');
-// --- Points Column
- if(sheet.getName() == "Sign-In"){ 
- sheet.getRange('E' + row).setFormula('=if(AND(G'+row+'="In",COUNTIFS(C$2:C'+row+',C'+row+',F$2:F'+row+',">="&int(F'+row+'))<=1),VLOOKUP(D'+row+',\'Point Types\'!$A:$B,2,0),IF(AND(G'+row+'="In",COUNTIFS(C$2:C'+row+',C'+row+',F$2:F'+row+',">="&int(F'+row+'))>1),0,If(G'+row+'="Out",IF(AND(((24*60)*(J'+row+'))>=15,((24*60)*(J'+row+'))<=360),ROUND((J'+row+'*1440)*(\'Macro References\'!$B$2)),0),"")))');
- } else if(sheet.getName() == "Secretary"){
-sheet.getRange('E' + row).setFormula('=if(AND(G'+row+'="In",COUNTIFS(C$2:C'+row+',C'+row+',F$2:F'+row+',">="&int(F'+row+'))<=1),VLOOKUP(D'+row+',\'Point Types\'!$A:$B,2,0),IF(AND(G'+row+'="In",COUNTIFS(C$2:C'+row+',C'+row+',F$2:F'+row+',">="&int(F'+row+'))>1),0,If(G'+row+'="Out",IF(AND(((24*60)*(J'+row+'))>=15,((24*60)*(J'+row+'))<=360),ROUND((J'+row+'*1440)*(\'Macro References\'!$B$3)),0),"")))');
-}
-*/
 }

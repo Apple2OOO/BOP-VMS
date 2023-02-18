@@ -6,4 +6,5 @@ function onOpen() {
 
 function showSidebar() {
  SpreadsheetApp.getUi().showSidebar(HtmlService.createHtmlOutputFromFile("Sidebar.html").setTitle("Audit Request Form"));
+
 }
