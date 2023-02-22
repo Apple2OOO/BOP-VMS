@@ -1,6 +1,7 @@
 function onFormSubmit(e) 
 {
-    var sheet = SpreadsheetApp.getActiveSheet();
+    var sheet = e.range.getSheet();
+
   if(sheet.getName() == "New Users"){
     var lastRow = sheet.getLastRow();
 
@@ -41,15 +42,17 @@ function onFormSubmit(e)
     var visitReturn = sheet.getRange(lastRow, 7).getValue();
     var currentSecretary = sheet.getRange(lastRow, 8).getValue();
     var notes = sheet.getRange(lastRow, 9).getValue();
-
-  sendEmail(visitTimeStamp,visitorFirstName, visitorLastName,visitorEmail,visitorMeeting,visitPurpose,visitReturn,currentSecretary,notes)
-
+ // Browser.msgBox('Starting');
+  sendEmail(visitTimeStamp,visitorFirstName, visitorLastName,visitorEmail,visitorMeeting,visitPurpose,visitReturn,currentSecretary,notes);
+ // Browser.msgBox('Finished');
 }
 
 function sendEmail(visitTimeStamp,visitorFirstName, visitorLastName,visitorEmail,visitorMeeting,visitPurpose,visitReturn,currentSecretary,notes) {
-
+if (visitorMeeting == 'Darren'){ var recipient = 'henrydl@purdue.edu'}
+else if (visitorMeeting == 'Darien') {var recipient = 'thomp347@purdue.edu'}
+else if (visitorMeeting == 'Darren, Darien') {var recipient = ['henrydl@purdue.edu, thomp347@purdue.edu']}
   var visitTimeStamp = Utilities.formatDate(visitTimeStamp, "EST", "EEE MMM dd yyyy HH:mm:ss");
-  var recipient = 'appletoj@purdue.edu';
+  //var recipient = 'appletoj@purdue.edu';
   var subject = "Missed Visitor in BOP Office";
   var body = 'Missed Visitor on ' + visitTimeStamp + '\n\n' + 
               'Visitor Name: '+ visitorFirstName + ' ' + visitorLastName + '\n' +
@@ -58,10 +61,11 @@ function sendEmail(visitTimeStamp,visitorFirstName, visitorLastName,visitorEmail
               'Purpose of Visit: '+ visitPurpose + '\n\n'+
               'When were they instructed to return? '+ visitReturn + '\n' + 
               'Current Student Secretary: ' + currentSecretary + '\n\n' +
-              'Notes: ' + notes
+              'Notes: ' + notes;
 
 
 
   GmailApp.sendEmail(recipient, subject, body);
 }
+
 }
