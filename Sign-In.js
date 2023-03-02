@@ -42,7 +42,7 @@ function onEdit(e) {
     logSecretary(sheet,row,col);
    } 
 
-
+ SortScoreboard();
 
 }
 function addFormulas(sheet, row, eventType) {
